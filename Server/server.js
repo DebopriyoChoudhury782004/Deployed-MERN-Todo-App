@@ -1,15 +1,4 @@
 const path = require("path");
-const express = require("express");
-const app = express();
-const cors = require("cors");
-
-// Allow requests from frontend
-app.use(cors());
-app.use(express.json());
-
-// API routes
-app.use("/api/auth", require("./routes/auth"));
-app.use("/api/todos", require("./routes/todos"));
 
 // Serve frontend in production
 if (process.env.NODE_ENV === "production") {
@@ -19,6 +8,3 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
   });
 }
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
